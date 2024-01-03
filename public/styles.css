@@ -1,0 +1,64 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.printable-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+.field {
+    margin-bottom: 20px;
+}
+
+.field label {
+    font-weight: bold;
+    display: inline-block;
+    width: 120px;
+    text-transform: capitalize; /* Capitalize the keys */
+    font-size: 20px; /* Increase font size */
+}
+
+.field-value {
+    display: inline-block;
+    word-break: break-word;
+    margin-left: 20px; /* Add more spacing between key and value */
+    font-size: 16px; /* Keep the font size for values */
+}
+
+.delete-anchor,
+.print-button {
+    display: block;
+    margin-top: 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.delete-anchor {
+    text-align: right; /* Align to the right */
+    color: red;
+}
+
+.print-button {
+    margin: 20px auto;
+    background-color: #4CAF50;
+    color: white;
+}
+
+@media print {
+    .delete-anchor,
+    .print-button {
+        display: none;
+    }
+}

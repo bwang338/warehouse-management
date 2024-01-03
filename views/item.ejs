@@ -1,0 +1,114 @@
+<!-- views/printablePage.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Printable Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .printable-section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+
+        .field {
+            margin-bottom: 20px;
+        }
+
+        .field label {
+            font-weight: bold;
+            display: inline-block;
+            width: 120px;
+            text-transform: capitalize; /* Capitalize the keys */
+            font-size: 20px; /* Increase font size */
+        }
+
+        .field-value {
+            display: inline-block;
+            word-break: break-word;
+            margin-left: 20px; /* Add more spacing between key and value */
+            font-size: 16px; /* Keep the font size for values */
+        }
+
+        .delete {
+            display: block;
+            margin-top: 20px;
+            text-align: right; /* Align to the right */
+            font-size: 24px;
+            color: red;
+            cursor: pointer;
+        }
+
+        .print-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media print {
+            .delete-anchor,
+            .print-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="printable-section">
+        <h1>
+            <%= data.item %>
+        </h1>
+        <% const allowedKeys = ['item', 'quantity', 'weight', 'tare', 'net', 'inDate', 'operator', 'vendor', 'status', 'price', 'notes', 'unifiedName']; %>
+        <% allowedKeys.forEach(function(key) { %>
+            <% if (data[key] !== undefined && data[key] != '') { %>
+                <div class="field">
+                    <label><%= key %>:</label>
+                    <span class="field-value"><%= data[key] %></span>
+                </div>
+            <% } %>
+        <% }); %>
+        
+        <!-- Delete anchor -->
+        <a class="delete" data-doc="<%= data._id %>">Delete</a>
+    </div>
+
+    <!-- Print button -->
+    <button class="print-button" onclick="window.print()">Print</button>
+
+    <script>
+        const trashcan = document.querySelector('a.delete');
+
+        trashcan.addEventListener('click', (e) => {
+            const endpoint = `/items/${trashcan.dataset.doc}`;
+
+            fetch(endpoint, {
+                method: 'DELETE'
+            })
+            .then((response) => response.json())
+            .then((data) => window.location.href = data.redirect)
+            .catch((err) => {
+                console.log(err);
+            })
+        })
+    </script>
+</body>
+</html>

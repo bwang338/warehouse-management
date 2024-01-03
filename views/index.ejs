@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    form {
+      max-width: 600px;
+      margin: auto;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+    }
+    input, select {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: green;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Inventory Form</h1>
+
+  <button id="redirectButton">See All Item</button>
+
+  <form id="inventoryForm" action="/items/addItem", method="POST">
+    <label for="item">Item:</label>
+    <input type="text" id="item" name="item" required>
+
+    <label for="quantity">Quantity:</label>
+    <input type="text" id="quantity" name="quantity" required>
+
+    <label for="weight">Weight:</label>
+    <input type="text" id="weight" name="weight" required>
+
+    <label for="tare">Tare:</label>
+    <input type="text" id="tare" name="tare" required>
+
+    <label for="net">Net:</label>
+    <input type="text" id="net" name="net" required>
+
+    <label for="inDate">InDate:</label>
+    <input type="text" id="inDate" name="inDate" required>
+
+    <label for="operator">Operator:</label>
+    <select id="operator" name="operator" required>
+      <option value="Brian">Brian</option>
+      <option value="James">James</option>
+    </select>
+
+    <label for="vendor">Vendor:</label>
+    <input type="text" id="vendor" name="vendor" required>
+
+    <label for="status">Status:</label>
+    <input type="text" id="status" name="status">
+
+    <label for="price">Price:</label>
+    <input type="text" id="price" name="price" required>
+
+    <label for="notes">Notes:</label>
+    <input type="text" id="notes" name="notes">
+
+    <label for="unifiedName">UnifiedName:</label>
+    <input type="text" id="unifiedName" name="unifiedName">
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    // JavaScript code to handle redirection
+    document.getElementById("redirectButton").addEventListener("click", function() {
+        // Change "new-page.html" to the URL of the page you want to redirect to
+        window.location.href = "/all-items";
+    });
+</script>
+</body>
+</html>

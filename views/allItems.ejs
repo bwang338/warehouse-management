@@ -1,0 +1,109 @@
+<!-- views/allItems.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spreadsheet</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-height: 80vh; /* Adjust the maximum height as needed */
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            min-width: 100%; /* Set a minimum width to allow horizontal scrolling */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        #redirectButton {
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #redirectButton:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spreadsheet</h1>
+        <button id="redirectButton">Add Another Item</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>_id</th>
+                    <th>item</th>
+                    <th>quantity</th>
+                    <th>weight</th>
+                    <th>tare</th>
+                    <th>net</th>
+                    <th>inDate</th>
+                    <th>operator</th>
+                    <th>vendor</th>
+                    <th>status</th>
+                    <th>price</th>
+                    <th>notes</th>
+                    <th>unifiedName</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach(function(item) { %>
+                        <tr>
+                            <td>
+                                <a class = "single" href="/items/<%= item._id %>">
+                                    <%= item._id || '' %>
+                                </a>
+                            </td>
+                            <td><%= item.item || '' %></td>
+                            <td><%= item.quantity || '' %></td>
+                            <td><%= item.weight || '' %></td>
+                            <td><%= item.tare || '' %></td>
+                            <td><%= item.net || '' %></td>
+                            <td><%= item.inDate || '' %></td>
+                            <td><%= item.operator || '' %></td>
+                            <td><%= item.vendor || '' %></td>
+                            <td><%= item.status || '' %></td>
+                            <td><%= item.price || '' %></td>
+                            <td><%= item.notes || '' %></td>
+                            <td><%= item.unifiedName || '' %></td>
+                        </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // JavaScript code to handle redirection
+        document.getElementById("redirectButton").addEventListener("click", function() {
+            // Change "new-page.html" to the URL of the page you want to redirect to
+            window.location.href = "/";
+        });
+    </script>
+</body>
+</html>
